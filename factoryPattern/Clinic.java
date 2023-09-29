@@ -1,5 +1,4 @@
 package factoryPattern;
-
 import java.util.Scanner;
 
 public class Clinic {
@@ -7,13 +6,16 @@ public class Clinic {
 
         Scanner input = new Scanner(System.in);
 
+        boolean terminate = false;
+        while(terminate!=true) {
         System.out.println("[1] Dog");
         System.out.println("[2] Cat");
+        System.out.println("[3] Exit");
         System.out.print("\nChoose your pet number: ");
         Integer choice = input.nextInt();
 
         PetRecord petFile = new PetRecord();
-        Pet pet;
+        Pet pet = null;
 
         switch(choice){
             case 1: pet = new Dog();
@@ -27,6 +29,11 @@ public class Clinic {
                 petFile.setPetName("Muning");
                 petFile.setPet(pet);
                 ((Cat) pet).setNoOfLives(9);
+                break;
+            case 3: 
+            	System.out.print("EXIT");
+            	System.exit(0);
+            	
         }
 
         System.out.println("Pet id is " + petFile.getPetId());
@@ -34,6 +41,15 @@ public class Clinic {
         System.out.println("Pet kind: " + petFile.getPet().getClass().getSimpleName());
         System.out.println("Communication sound: "+ petFile.getPet().makeSound());
         System.out.println("Play mode: " + petFile.getPet().play());
+        
 
+        if (pet instanceof Dog) 
+        {
+            System.out.println("Breed: " + ((Dog) pet).getBreed());
+        } 
+        else if (pet instanceof Cat) {
+            System.out.println("Number of Lives: " + ((Cat) pet).getNoOfLives());
+        }
+        }
     }
 }
